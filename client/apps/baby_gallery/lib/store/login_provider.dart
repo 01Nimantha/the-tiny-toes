@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginProvider extends ChangeNotifier {
-  String? username;
-  String? password;
-
   bool login(String username, String password) {
     if (username == 'user' && password == 'pass') {
-      this.username = username;
-      this.password = password;
-      notifyListeners();
+      () async {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('username', username);
+        await prefs.setString('password', password);
+        notifyListeners();
+      };
       return true;
     }
     notifyListeners();
@@ -16,8 +17,11 @@ class LoginProvider extends ChangeNotifier {
   }
 
   void logout() {
-    username = null;
-    password = null;
-    notifyListeners();
+    () async {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.remove('username');
+      await prefs.remove('password');
+      notifyListeners();
+    };
   }
 }
