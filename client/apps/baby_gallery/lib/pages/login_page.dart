@@ -1,4 +1,7 @@
+import 'package:baby_gallery/pages/users_page.dart';
+import 'package:baby_gallery/store/login_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -56,8 +59,8 @@ class _LoginPageState extends State<LoginPage> {
                   if (value == null || value.trim().isEmpty) {
                     return 'Please enter your password';
                   }
-                  if (value.length < 6) {
-                    return 'Password must be at least 6 characters';
+                  if (value.length < 3) {
+                    return 'Password must be at least 3 characters';
                   }
                   return null;
                 },
@@ -69,10 +72,18 @@ class _LoginPageState extends State<LoginPage> {
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      // Process login
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Logging in...')),
-                      );
+                      bool isLoggedIn =
+                          Provider.of<LoginProvider>(context, listen: false)
+                              .login(_usernameController.text,
+                                  _passwordController.text);
+                      if (isLoggedIn) {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => UsersPage(),
+                          ),
+                        );
+                      }
+
                       _usernameController.clear();
                       _passwordController.clear();
                     }
