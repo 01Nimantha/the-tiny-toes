@@ -82,6 +82,13 @@ class _LoginPageState extends State<LoginPage> {
                             builder: (context) => UsersPage(),
                           ),
                         );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Logging in...')),
+                        );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Login failed')),
+                        );
                       }
 
                       _usernameController.clear();
