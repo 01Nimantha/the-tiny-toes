@@ -7,7 +7,6 @@ class LoginProvider extends ChangeNotifier {
       () async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('username', username);
-        await prefs.setString('password', password);
         notifyListeners();
       };
       return true;
@@ -20,7 +19,6 @@ class LoginProvider extends ChangeNotifier {
     () async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.remove('username');
-      await prefs.remove('password');
       notifyListeners();
     };
   }
