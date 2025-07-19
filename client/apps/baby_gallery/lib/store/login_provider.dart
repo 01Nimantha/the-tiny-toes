@@ -20,6 +20,6 @@ class LoginProvider extends ChangeNotifier {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.remove('username');
       notifyListeners();
-    };
+    }();
   }
 }
