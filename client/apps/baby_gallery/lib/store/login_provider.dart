@@ -8,7 +8,7 @@ class LoginProvider extends ChangeNotifier {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('username', username);
         notifyListeners();
-      };
+      }();
       return true;
     }
     notifyListeners();
