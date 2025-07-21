@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:baby_gallery/pages/photo_details_page.dart';
 import 'package:baby_gallery/pages/login_page.dart';
 import 'package:baby_gallery/store/gallery.dart';
 import 'package:baby_gallery/store/gallery_provider.dart';
@@ -200,15 +201,25 @@ class _GalleryPageState extends State<GalleryPage> {
                 final item = value.gallery[index];
                 return GestureDetector(
                   onTap: () {
-                    // Handle item tap
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => PhotoDetailsPage(
+                              userName: widget.userName,
+                              albumName: widget.albumName,
+                              galleryName: item.author,
+                              imageUrl: item.downloadUrl,
+                            )));
                   },
                   child: Column(
                     children: [
-                      Image(
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(12),
+                        child: Image.network(
                           width: 100,
                           height: 100,
-                          image: NetworkImage(item.downloadUrl),
-                          fit: BoxFit.cover),
+                          item.downloadUrl,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                       Text(item.author),
                     ],
                   ),
