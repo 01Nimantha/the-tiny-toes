@@ -1,6 +1,7 @@
 import 'package:baby_gallery/pages/login_page.dart';
 import 'package:baby_gallery/pages/users_page.dart';
 import 'package:baby_gallery/store/album_provider.dart';
+import 'package:baby_gallery/store/gallery_provider.dart';
 import 'package:baby_gallery/store/login_provider.dart';
 import 'package:baby_gallery/store/users_provider.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,8 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => LoginProvider()),
         ChangeNotifierProvider(create: (_) => UsersProvider()),
-        ChangeNotifierProvider(create: (_) => AlbumProvider())
+        ChangeNotifierProvider(create: (_) => AlbumProvider()),
+        ChangeNotifierProvider(create: (_) => GalleryProvider()),
       ],
       child: const MyApp(),
     ),
