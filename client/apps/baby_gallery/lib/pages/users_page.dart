@@ -1,8 +1,8 @@
+import 'package:baby_gallery/pages/album_page.dart';
 import 'package:baby_gallery/pages/login_page.dart';
 import 'package:baby_gallery/store/login_provider.dart';
 import 'package:baby_gallery/store/users.dart';
 import 'package:baby_gallery/store/users_provider.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
@@ -40,7 +40,7 @@ class _UsersPageState extends State<UsersPage> {
     try {
       await Future.delayed(Duration(seconds: 2)); // Optional delay
       final response = await http
-          .get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
+          .get(Uri.parse('http://jsonplaceholder.typicode.com/users'));
 
       if (response.statusCode == 200) {
         List<dynamic> jsonData = json.decode(response.body);
@@ -190,9 +190,12 @@ class _UsersPageState extends State<UsersPage> {
                                   ),
                                   title: Text(user.name),
                                   onTap: () {
-                                    if (kDebugMode) {
-                                      print(user.name);
-                                    }
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            AlbumPage(userName: user.name),
+                                      ),
+                                    );
                                   },
                                 ),
                               );
