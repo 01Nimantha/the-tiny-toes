@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginProvider extends ChangeNotifier {
   bool login(String username, String password) {
-    if (username == 'user' && password == 'pass') {
+    if (username == 'user' && password == 'pass1234@') {
       () async {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         await prefs.setString('username', username);
