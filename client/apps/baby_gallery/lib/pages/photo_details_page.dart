@@ -39,7 +39,7 @@ class _PhotoDetailsPageState extends State<PhotoDetailsPage> {
     return Scaffold(
       appBar: CustomAppBarWidget(userName: _name, pageName: "Gallery"),
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
