@@ -4,7 +4,7 @@ A Flutter-based **baby gallery app** developed as part of the Flutter Developer 
 
 ---
 
----
+## ![ The Tiny Toes Banner ](./docs/The%20Tiny%20Toes.png)
 
 ## 📱 Features
 
