@@ -1,6 +1,5 @@
+import 'package:baby_gallery/custom_widget/custom_app_bar_widget.dart';
 import 'package:baby_gallery/pages/album_page.dart';
-import 'package:baby_gallery/pages/login_page.dart';
-import 'package:baby_gallery/store/login_provider.dart';
 import 'package:baby_gallery/store/users.dart';
 import 'package:baby_gallery/store/users_provider.dart';
 import 'package:flutter/material.dart';
@@ -67,64 +66,7 @@ class _UsersPageState extends State<UsersPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Row(
-          children: [
-            TextButton(
-              onPressed: () {
-                Provider.of<LoginProvider>(context, listen: false).logout();
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                );
-              },
-              style: ButtonStyle(
-                foregroundColor: WidgetStatePropertyAll(Colors.red),
-                side: WidgetStatePropertyAll(BorderSide(color: Colors.red)),
-                shape: WidgetStatePropertyAll(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-              ),
-              child: Text('Logout'),
-            ),
-            Spacer(flex: 2),
-            Text(
-              "Users",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 35,
-              ),
-            ),
-            Spacer(),
-          ],
-        ),
-        actions: [
-          Text(
-            _name,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-          ),
-          SizedBox(width: 10),
-          Container(
-            padding: EdgeInsets.all(2),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-              border: Border.all(color: Colors.blue, width: 2),
-            ),
-            child: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Icon(
-                Icons.person_outline,
-                color: Colors.blue,
-                size: 40,
-              ),
-            ),
-          ),
-          SizedBox(width: 10),
-        ],
-      ),
+      appBar: CustomAppBarWidget(userName: _name, pageName: "Users"),
       body: Column(
         children: [
           Divider(
